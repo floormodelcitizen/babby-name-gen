@@ -1,8 +1,31 @@
-<script setup>
-  const options = reactive({
-    gender: "Boy",
-    popularity: "Unique",
-    length: "Long",
+<script setup lang="ts">
+  interface OptionState {
+    gender: Gender;
+    popularity: Popularity;
+    length: Length;
+  }
+
+  enum Gender {
+    GIRL = "Girl",
+    UNISEX = "Unisex",
+    BOY = "Boy",
+  }
+
+  enum Popularity {
+    TRENDY = "Trendy",
+    UNIQUE = "Unique",
+  }
+
+  enum Length {
+    LONG = "Long",
+    SHORT = "Short",
+    ALL = "All",
+  }
+
+  const options = reactive<OptionState>({
+    gender: Gender.GIRL,
+    popularity: Popularity.UNIQUE,
+    length: Length.ALL,
   });
 </script>
 
@@ -16,19 +39,19 @@
         <div class="option-buttons">
           <button
             class="option option-left"
-            :class="options.gender === 'Girl' && 'option-active'"
+            :class="options.gender === Gender.GIRL && 'option-active'"
           >
             Girl
           </button>
           <button
             class="option"
-            :class="options.gender === 'Unisex' && 'option-active'"
+            :class="options.gender === Gender.UNISEX && 'option-active'"
           >
             Unisex
           </button>
           <button
             class="option option-right"
-            :class="options.gender === 'Boy' && 'option-active'"
+            :class="options.gender === Gender.BOY && 'option-active'"
           >
             Boy
           </button>
@@ -39,13 +62,13 @@
         <div class="option-buttons">
           <button
             class="option option-left"
-            :class="options.popularity === 'Trendy' && 'option-active'"
+            :class="options.popularity === Popularity.TRENDY && 'option-active'"
           >
             Trendy
           </button>
           <button
             class="option option-right"
-            :class="options.popularity === 'Unique' && 'option-active'"
+            :class="options.popularity === Popularity.UNIQUE && 'option-active'"
           >
             Unique
           </button>
@@ -56,21 +79,21 @@
         <div class="option-buttons">
           <button
             class="option option-left"
-            :class="options.length === 'Long' && 'option-active'"
+            :class="options.length === Length.LONG && 'option-active'"
           >
-            d Long
+            Long
           </button>
           <button
             class="option"
-            :class="options.length === 'All' && 'option-active'"
+            :class="options.length === Length.SHORT && 'option-active'"
           >
-            All
+            Short
           </button>
           <button
             class="option option-right"
-            :class="options.length === 'Short' && 'option-active'"
+            :class="options.length === Length.ALL && 'option-active'"
           >
-            Short
+            All
           </button>
         </div>
       </div>
