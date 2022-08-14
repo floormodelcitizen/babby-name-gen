@@ -15,6 +15,12 @@
 
   const selectedNames = ref<string[]>([]);
 
+  const removeName = (index: number) => {
+    const filteredNames = [...selectedNames.value];
+    filteredNames.splice(index, 1);
+    selectedNames.value = filteredNames;
+  };
+
   const computeSelectedNames = () => {
     const filteredNames = names
       .filter((name) => name.gender === options.gender)
@@ -66,6 +72,8 @@
         v-for="(name, index) in selectedNames"
         :key="name"
         :name="name"
+        @remove="() => removeName(index)"
+        :index="index"
       />
     </div>
   </div>
